@@ -3,8 +3,13 @@ from perfil.models import mCategoria, mConta
 from .models import mValores
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.http import HttpResponse
-from datetime import datetime
+from django.http import HttpResponse, FileResponse
+from datetime import datetime, date
+from django.template.loader import render_to_string
+import os
+from django.conf import settings
+from weasyprint import HTML #para gerar PDFs apartir do html
+from io import BytesIO #permite salvar bytes em memoria ao inves de salvar em disco
 
 
 # Create your views here.
@@ -64,3 +69,21 @@ def view_extrato(request):
         valores = valores.filter(categoria__id=categoria_get)
 
     return render(request, 'view_extrato.html', {'valores': valores, 'contas': contas, 'categorias': categorias})
+
+
+def exportar_pdf(request): #usando weasyprint: pip install weasyprint
+    valores = mValores.objects.filter(data__month=datetime.now().month)
+
+    path_template = os.path.join(settings.BASE_DIR, 'templates/partials/extrato.html')
+    template_render = render_to_string(path_template, {'valores': valores})
+
+
+    path_output = BytesIO()
+    HTML(string=template_render).write_pdf(path_output)
+
+    path_output.seek(0)
+
+    data_atual = date.today().strftime('%d_%m_%Y')
+
+    
+    return FileResponse(path_output, filename= data_atual + "_Extrato.pdf")
