@@ -4,6 +4,7 @@ from .models import mValores
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.http import HttpResponse
+from datetime import datetime
 
 
 # Create your views here.
@@ -44,5 +45,22 @@ def novo_valor(request):
 
         conta.save()
 
-        
+
         return redirect('/extrato/novo_valor')
+    
+def view_extrato(request):
+    contas = mConta.objects.all()
+    categorias = mCategoria.objects.all()
+
+    conta_get = request.GET.get('conta')
+    categoria_get = request.GET.get('categoria')
+
+    valores = mValores.objects.filter(data__month=datetime.now().month)
+
+    if conta_get:
+        valores = valores.filter(conta__id=conta_get)
+
+    if categoria_get:
+        valores = valores.filter(categoria__id=categoria_get)
+
+    return render(request, 'view_extrato.html', {'valores': valores, 'contas': contas, 'categorias': categorias})
