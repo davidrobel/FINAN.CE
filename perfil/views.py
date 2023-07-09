@@ -3,11 +3,15 @@ from django.http import HttpResponse
 from .models import mConta, mCategoria
 from django.contrib import messages
 from django.contrib.messages import constants
-
+from .utils import calcula_total
 
 # Create your views here.
 def home (request):
-    return render(request, 'home.html')
+    contas = mConta.objects.all()
+
+    total_contas = calcula_total(contas, 'valor')
+
+    return render(request, 'home.html', {'contas': contas, 'total_contas':total_contas})
 
 
 
@@ -16,9 +20,7 @@ def gerenciar(request):
 
     contas = mConta.objects.all()
 
-    total_contas = 0
-    for conta in contas:
-        total_contas += conta.valor
+    total_contas = calcula_total(contas, 'valor')
 
     return render(request, 'gerenciar.html', {'contas':contas, 'total_contas':total_contas, 'categorias':categoria})
 
