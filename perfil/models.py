@@ -17,11 +17,24 @@ class mCategoria(models.Model):
         valores = mValores.objects.filter(categoria__id = self.id).filter(data__month=datetime.now().month).filter(tipo='S')
         
         total_valor  = calcula_total(valores, 'valor')
-    
+        
         return total_valor
 
     def calcula_percentual_gasto_por_categoria(self):
        return int((self.total_gasto() * 100) / self.valor_planejamento)
+    
+    #TODO: terminar loadbar 
+    def gastos(self):
+        from extrato.models import mValores
+        from .utils import calcula_total
+        valores = mValores.objects.filter(data__month=datetime.now().month).filter(tipo='S')
+        
+        gastos_total  = calcula_total(valores, 'valor')
+
+        print(f'total de:{gastos_total}')
+
+        return 10
+
 
 class mConta(models.Model):
     banco_choices = (
