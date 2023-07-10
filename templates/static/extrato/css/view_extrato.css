@@ -34,3 +34,11 @@ tr{
     text-align: center;
 
 }
+
+.botao-secundario:hover {
+
+    background-color: var(--contrast-color);
+    color: var(--dark-color);
+
+
+}

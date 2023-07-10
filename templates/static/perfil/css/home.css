@@ -74,3 +74,26 @@
     width: 50%;
     display: inline;
 }
+
+.botao-secundario{
+
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    border: 2px solid var(--contrast-color);
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+    display: block;
+    float: right;
+    text-align: center;
+
+}
+
+.botao-secundario:hover {
+
+    background-color: var(--contrast-color);
+    color: var(--dark-color);
+
+
+}
