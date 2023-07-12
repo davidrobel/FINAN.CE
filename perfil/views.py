@@ -4,6 +4,7 @@ from .models import mConta, mCategoria
 from django.contrib import messages
 from django.contrib.messages import constants
 from .utils import calcula_total
+from extrato.models import mValores
 
 # Create your views here.
 def home (request):
@@ -83,3 +84,19 @@ def update_categoria(request, id):
     categoria.save()
 
     return redirect('/perfil/gerenciar/')
+
+
+def dashboard(request):
+    dados = {}
+
+    categorias = mCategoria.objects.all()
+
+    for i in categorias:
+        total = 0
+        valores = mValores.objects.filter(categoria=i)
+        for v in valores:
+            total += v.valor
+
+        dados[i.categoria] = total
+
+    return render(request, 'dashboard.html', {'labels': list(dados.keys()), 'values': list(dados.values())})
