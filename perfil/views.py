@@ -3,16 +3,34 @@ from django.http import HttpResponse
 from .models import mConta, mCategoria
 from django.contrib import messages
 from django.contrib.messages import constants
-from .utils import calcula_total
+from .utils import calcula_total, calcula_equilibrio_financerio, saldo_despesas
 from extrato.models import mValores
+from datetime import datetime
 
 # Create your views here.
 def home (request):
     contas = mConta.objects.all()
+    valores = mValores.objects.filter(data__month=datetime.now().month)
+    entradas = valores.filter(tipo='E')
+    saidas = valores.filter(tipo='S')
 
+    total_entradas = calcula_total(entradas, 'valor')
+    total_saidas = calcula_total(saidas, 'valor')
+    percentual_gastos_essenciais, percentual_gastos_nao_essenciais = calcula_equilibrio_financerio()
+
+    total_entrada_mes, total_saida_mes, total_livre = saldo_despesas()
+    
     total_contas = calcula_total(contas, 'valor')
 
-    return render(request, 'home.html', {'contas': contas, 'total_contas':total_contas})
+    return render(request, 'home.html', {'contas': contas, 
+                                         'total_contas':total_contas, 
+                                         'total_saidas':total_saidas, 
+                                         'total_entradas': total_entradas,
+                                         'percentual_gastos_essenciais': int(percentual_gastos_essenciais),
+                                         'percentual_gastos_nao_essenciais': int(percentual_gastos_nao_essenciais),
+                                         'total_entrada_mes' : total_entrada_mes,
+                                         'total_saida_mes': total_saida_mes,
+                                         'total_livre': total_livre})
 
 
 
