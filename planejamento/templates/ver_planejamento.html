@@ -21,11 +21,11 @@
                         <p>Total gasto:</p>
                         <div>
                         
-                            <span style="float: left !important;">R$ 20.00</span>
-                            <span style="float: right !important;">R$ 50.00</span>
+                            <span style="float: left !important;">R$ {{total_saida_mes}} </span>
+                            <span style="float: right !important;">R$ {{total_entrada_mes}}</span>
                         </div><br>
                         <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 45%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{ percentual_saida_mes }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                        
                         <br>
