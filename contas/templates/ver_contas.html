@@ -34,7 +34,7 @@
                         <p class="fonte-destaque">Nao ha contas vencidas</p>
                     {% else %}
                         {% for i in contas_vencidas %}
-                            <div class="linha-conta">
+                            <div class="linha-conta" style="margin: 5px 0px">
                                 <div class="row">
                                     <div class="col-md text-center">
                                         {{i.titulo}}
@@ -47,7 +47,7 @@
                                     </div> 
                                 </div>
                             </div>
-                            <br/>
+                            
                         {% endfor %}
                     {% endif %}
                 </div>
@@ -59,7 +59,7 @@
                         <p class="fonte-destaque">Nao ha contas proximo do vencimento</p>
                     {% else %}
                         {% for v in contas_prox_vencimento %}
-                            <div class="linha-conta">
+                            <div class="linha-conta" style="margin: 5px 0px">
                                 <div class="row">
                                     <div class="col-md text-center">
                                         {{v.titulo}}
@@ -84,7 +84,7 @@
                         <p class="fonte-destaque">Sem contas</p>
                     {% else %}
                         {% for r in restantes %} 
-                            <div class="linha-conta">
+                            <div class="linha-conta" style="margin: 5px 0px">
                                 <div class="row">
                                     <div class="col-md text-center">
                                         {{r.titulo}}
@@ -102,9 +102,9 @@
                     
                 </div>
 
-            </div>
+            </div><br><br>
 
-            <div class="col-md-4">
+            <div class="col-md-4"  style="margin: 5px 0px">
             </div>
 
         </div>

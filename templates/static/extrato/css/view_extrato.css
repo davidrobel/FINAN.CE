@@ -5,6 +5,11 @@ table{
 
 }
 
+.linha-conta {
+    margin: 5px 0px;
+    
+}
+
 .linha{
     height: 40px;
     background-color: var(--dark-color);
@@ -28,7 +33,7 @@ tr{
     text-decoration: none;
     border: 2px solid var(--contrast-color);
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 150px;
     width: 100%;
     display: block;
     text-align: center;
@@ -42,3 +47,4 @@ tr{
 
 
 }
+
