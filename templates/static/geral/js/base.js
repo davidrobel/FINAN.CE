@@ -1,5 +1,3 @@
-function active() {
-    $(document).on('click', 'a', function() {
-        $(this).addClass('active')
-    })    
-}
+$(document).on('click', 'a', function() {
+    $(this).addClass('active').siblings().removeClass('active');
+});

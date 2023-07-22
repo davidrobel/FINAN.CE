@@ -6,6 +6,8 @@ import json
 from perfil.utils import saldo_despesas, calcula_total
 from extrato.models import mValores
 from datetime import datetime
+from django.contrib import messages
+from django.contrib.messages import constants
 
 # Create your views here.
 def definir_planejamento(request):
@@ -20,7 +22,11 @@ def update_valor_categoria(request, id):
     categoria = mCategoria.objects.get(pk=id)
     categoria.valor_planejamento = corpo
     categoria.save()
+
+    messages.add_message(request, constants.SUCCESS, 'Planejamento salvo!')
     return JsonResponse({'status': 'Sucesso'})
+
+
 
 
 def ver_planejamento(request):
@@ -31,7 +37,11 @@ def ver_planejamento(request):
     total_entrada_mes = calcula_total(entrada_mes, 'valor')    
     total_saida_mes = calcula_total(saida_mes, 'valor')
 
-    percentual_saida_mes = total_saida_mes * 100 / total_entrada_mes
+    if total_entrada_mes != 0:
+        percentual_saida_mes = total_saida_mes * 100 / total_entrada_mes
+    else:
+        percentual_saida_mes = 0
+        
 
     
     return render(request, 'ver_planejamento.html', {'categorias': categorias, 

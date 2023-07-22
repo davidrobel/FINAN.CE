@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from perfil.models import mCategoria
 from .models import mContaPagar, mContaPaga
 from django.contrib import messages
 from django.contrib.messages import constants
 from datetime import datetime
+from django.contrib import messages
+from django.contrib.messages import constants
 
 
 # Create your views here.
@@ -46,4 +49,22 @@ def ver_contas(request):
         contas_prox_vencimento = todas_contas.filter(dia_pagamento__lte = DIA_ATUAL + 5).filter(dia_pagamento__gt = DIA_ATUAL).exclude(id__in = contas_pagas)
         restantes = todas_contas.exclude(id__in = contas_vencidas).exclude(id__in = contas_prox_vencimento).exclude(id__in = contas_pagas)
         
-        return render(request, 'ver_contas.html', {'contas_vencidas': contas_vencidas, 'contas_prox_vencimento': contas_prox_vencimento, 'restantes':restantes})
+        return render(request, 'ver_contas.html', {'contas_vencidas': contas_vencidas, 
+                                                   'contas_prox_vencimento': contas_prox_vencimento, 
+                                                   'restantes':restantes})
+    
+def paga_conta(request, id):
+    #paga_conta = mContaPagar.objects.get(pk=id)
+    id = id
+    data = datetime.now()
+
+    valores = mContaPaga(
+        conta_id = id,
+        data_pagamento = data
+    )
+
+    valores.save()
+    
+
+    messages.add_message(request, constants.SUCCESS, 'UFA!! Conta paga.')
+    return redirect('/contas/ver_contas/')

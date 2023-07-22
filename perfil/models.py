@@ -39,7 +39,7 @@ class mCategoria(models.Model):
 class mConta(models.Model):
     banco_choices = (
         ('NU', 'Nubank'),
-        ('CE', 'Caixa economica'),
+        ('CE', 'Caixa economica')
     )
 
     tipo_choices = (

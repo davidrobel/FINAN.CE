@@ -97,3 +97,14 @@
 
 
 }
+
+@keyframes fadeOut {
+    from { opacity: 1; } /* Opacidade inicial (100%) */
+    to { opacity: 0; } /* Opacidade final (0%) */
+}
+
+
+.alert {
+    animation: fadeOut 2s ease-out 3s forwards;
+
+}
