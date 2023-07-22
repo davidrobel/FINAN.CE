@@ -16,35 +16,29 @@
   </head>
   <body>
     
-  
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a href="{% url 'home' %}" class="navbar-brand">FINAN.CE</a>
-      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" style="margin-left: 30px" href="{% url 'novo_valor' %}">Entrada/Saida +</a>
-        <a class="nav-item nav-link" style="margin-left: 30px" href="{% url 'gerenciar' %}">Carteiras $</a>
-        <a class="nav-item nav-link" style="margin-left: 30px" href="{% url 'definir_planejamento' %}">Categorias</a>
-        <a class="nav-item nav-link" style="margin-left: 30px" href="{% url 'ver_planejamento' %}">Gastos</a>
-        <a class="nav-item nav-link" style="margin-left: 30px" href="{% url 'ver_contas' %}">Contas</a>
-        <a class="nav-item nav-link" style="margin-left: 30px" href="{% url 'dashboard' %}">DAsh</a>
-      </div>             
-    </div>
-  </div>
-</nav>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-
-
-
-
-
-
-   
-    {% block 'body' %}{% endblock %}
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="{% url 'home' %}" class="navbar-brand active"(current)>FINAN.CE</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'novo_valor' %}">Entrada/Saida +</a>
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'gerenciar' %}">Carteiras $</a>
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'definir_planejamento' %}">Categorias</a>
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'ver_planejamento' %}">Gastos</a>
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'ver_contas' %}">Contas</a>
+                    <a onclick="active()" class="nav-item nav-link" style="margin-left: 30px" href="{% url 'dashboard' %}">DAsh</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+     {% block 'body' %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'geral/js/base.js' %}"></script>
   </body>
 </html>
