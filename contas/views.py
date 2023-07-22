@@ -48,11 +48,15 @@ def ver_contas(request):
         contas_vencidas = todas_contas.filter(dia_pagamento__lt = DIA_ATUAL).exclude(id__in = contas_pagas)        
         contas_prox_vencimento = todas_contas.filter(dia_pagamento__lte = DIA_ATUAL + 5).filter(dia_pagamento__gt = DIA_ATUAL).exclude(id__in = contas_pagas)
         restantes = todas_contas.exclude(id__in = contas_vencidas).exclude(id__in = contas_prox_vencimento).exclude(id__in = contas_pagas)
-        
+        pagas = todas_contas.exclude(id__in = contas_vencidas).exclude(id__in = contas_prox_vencimento).exclude(id__in = restantes)
+             
         return render(request, 'ver_contas.html', {'contas_vencidas': contas_vencidas, 
                                                    'contas_prox_vencimento': contas_prox_vencimento, 
-                                                   'restantes':restantes})
+                                                   'restantes':restantes,
+                                                   'contas_pagas': pagas})
     
+    
+       
 def paga_conta(request, id):
     #paga_conta = mContaPagar.objects.get(pk=id)
     id = id
@@ -64,7 +68,6 @@ def paga_conta(request, id):
     )
 
     valores.save()
-    
-
+        
     messages.add_message(request, constants.SUCCESS, 'UFA!! Conta paga.')
     return redirect('/contas/ver_contas/')
