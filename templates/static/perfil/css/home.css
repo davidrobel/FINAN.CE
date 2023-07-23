@@ -55,6 +55,10 @@
 
 }
 
+.arrowred {
+    transform: rotate(180deg);
+}
+
 .despesa{
     border-right: 2px solid var(--differential-color);
     text-align: right;

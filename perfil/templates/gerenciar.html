@@ -28,7 +28,7 @@
                         <div class="lista-contas-main">
                             <span><img width="10%" src="{{conta.icone.url}} ">&nbsp&nbsp{{conta.apelido}} </span>
 
-                            <span class="total-conta positivo ">R$ {{conta.valor}}&nbsp&nbsp&nbsp <a href="{% url 'deletar_banco' conta.id %}"><img width="15%" src="{% static 'perfil/img/exit.png' %}"></a></span>
+                            <span class="total-conta positivo ">R$ {{conta.valor}}&nbsp&nbsp&nbsp <a href="{% url 'deletar_banco' conta.id %}"><img width="15%" src="{% static 'perfil/img/multiply-cross.svg' %}"></a></span>
                         </div>
                         <br>
                     {% endfor %}
@@ -104,7 +104,7 @@
                         <div class="lista-contas-main">
                             <span>{{kategoria.categoria}}</span>
 
-                            <span class="total-conta"><a href="{% url 'update_categoria' kategoria.id %}"><img width="40%" src="{% if kategoria.essencial%} {% static 'perfil/img/check.png' %}  {% else %}  {% static 'perfil/img/exit.png' %}  {% endif %}"></a></span>
+                            <span class="total-conta"><a href="{% url 'update_categoria' kategoria.id %}"><img width="40%" src="{% if kategoria.essencial%} {% static 'perfil/img/checked-tick.svg' %}  {% else %}  {% static 'perfil/img/multiply-cross.svg' %}  {% endif %}"></a></span>
                         </div>
                         <br>
                     {% endfor %}
