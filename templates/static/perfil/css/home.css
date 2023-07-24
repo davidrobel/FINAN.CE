@@ -1,3 +1,5 @@
+
+
 .card{
 
     width: 100%;
@@ -15,6 +17,10 @@
 
     font-weight: bold;
     font-size: 25px;
+
+}
+
+.bg-green {
 
 }
 
@@ -43,7 +49,7 @@
 .botao-principal{
 
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
     font-weight: bold;
     font-size: 18px;
 
@@ -54,6 +60,15 @@
     border: none;
 
 }
+
+.botao-principal:hover {
+
+    background-color: #E8DAEF;
+    
+
+
+}
+
 
 @media screen and (max-width: 768px) {
     .icone-setas {
@@ -73,11 +88,12 @@
 }
 
 .negativo{
-    color: var(--differential-color);
+    color: #E74C3C;
 }
 
 .positivo{
-    color: var(--contrast-color);
+    color: #49FF33;
+    font-weight: bold;
 }
 
 

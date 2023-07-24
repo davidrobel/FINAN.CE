@@ -6,12 +6,13 @@ body {
 
 :root {
 
-    --main-color: #2B2B2B;
-    --dark-color: #1C1A1A;
-    --contrast-color: #69D2CD;
+    --main-color: #262626;
+    --dark-color: #000;
+    --contrast-color: #7655D5;
     --differential-color: #E96363;
-    --text-color: #fff ;
+    --text-color: #ffffff ;
     
 
 }
+
 
