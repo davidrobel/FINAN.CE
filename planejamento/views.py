@@ -38,7 +38,7 @@ def ver_planejamento(request):
     total_saida_mes = calcula_total(saida_mes, 'valor')
 
     if total_entrada_mes != 0:
-        percentual_saida_mes = total_saida_mes * 100 / total_entrada_mes
+        percentual_saida_mes = total_saida_mes * 100 // total_entrada_mes
     else:
         percentual_saida_mes = 0
         

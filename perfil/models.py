@@ -21,9 +21,12 @@ class mCategoria(models.Model):
         return total_valor
 
     def calcula_percentual_gasto_por_categoria(self):
-       return int((self.total_gasto() * 100) / self.valor_planejamento)
+        if self.valor_planejamento != 0:
+            return int((self.total_gasto() * 100) / self.valor_planejamento)
+        else:
+            return 0
     
-    #TODO: terminar loadbar 
+   
     def gastos(self):
         from extrato.models import mValores
         from .utils import calcula_total
