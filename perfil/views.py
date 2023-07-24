@@ -53,7 +53,7 @@ def cadastrar_banco(request):
 
     if len(apelido.strip()) == 0 or len(valor.strip()) == 0:
         messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
-        return redirect('/perfil/gerenciar/')
+        return redirect('/gerenciar/')
 
     # associa o valor do candpo html com as variaveis acima dentro da instacia nova_conta
     nova_conta = mConta(
@@ -68,7 +68,7 @@ def cadastrar_banco(request):
 
     messages.add_message(request, constants.SUCCESS, 'Salvo com sucesso')
     
-    return redirect('/perfil/gerenciar/')
+    return redirect('/gerenciar/')
 
 
 def deletar_banco(request, id):
@@ -76,7 +76,7 @@ def deletar_banco(request, id):
     conta.delete()
 
     messages.add_message(request, constants.SUCCESS, 'Conta deletada com sucesso!')
-    return redirect('/perfil/gerenciar/')
+    return redirect('/gerenciar/')
 
 def cadastrar_categoria(request):
 
@@ -92,7 +92,7 @@ def cadastrar_categoria(request):
 
     messages.add_message(request, constants.SUCCESS, 'Categoria salvo')
 
-    return redirect('/perfil/gerenciar/')
+    return redirect('/gerenciar/')
 
 
 def update_categoria(request, id):
@@ -101,7 +101,7 @@ def update_categoria(request, id):
     categoria.essencial =  not categoria.essencial
     categoria.save()
 
-    return redirect('/perfil/gerenciar/')
+    return redirect('/gerenciar/')
 
 
 def dashboard(request):

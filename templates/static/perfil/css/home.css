@@ -55,6 +55,13 @@
 
 }
 
+@media screen and (max-width: 768px) {
+    .icone-setas {
+      max-width: 10%;
+    }
+  }
+  
+
 .arrowred {
     transform: rotate(180deg);
 }
