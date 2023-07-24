@@ -63,9 +63,8 @@
 
 .botao-principal:hover {
 
-    background-color: #E8DAEF;
-    
-
+    background-color: #CCD1D1;
+    color: var(--contrast-color);
 
 }
 
