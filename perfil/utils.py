@@ -1,4 +1,5 @@
 from extrato.models import mValores
+from contas.models import mContaPagar, mContaPaga
 from datetime import datetime
 
 def calcula_total(obj, campo):
@@ -39,3 +40,22 @@ def saldo_despesas():
     total_livre = total_entrada_mes - total_saida_mes
 
     return total_entrada_mes, total_saida_mes, total_livre
+
+
+def gerenciar_contas():
+    MES_ATUAL = datetime.now().month
+    DIA_ATUAL = datetime.now().day
+
+    todas_contas = mContaPagar.objects.all()
+    contas_pagas = mContaPaga.objects.filter(data_pagamento__month = MES_ATUAL).values('conta')       
+    contas_vencidas = todas_contas.filter(dia_pagamento__lt = DIA_ATUAL).exclude(id__in = contas_pagas)        
+    contas_prox_vencimento = todas_contas.filter(dia_pagamento__lte = DIA_ATUAL + 5).filter(dia_pagamento__gt = DIA_ATUAL).exclude(id__in = contas_pagas)
+    restantes = todas_contas.exclude(id__in = contas_vencidas).exclude(id__in = contas_prox_vencimento).exclude(id__in = contas_pagas)
+    #pagas = todas_contas.exclude(id__in = contas_vencidas).exclude(id__in = contas_prox_vencimento).exclude(id__in = restantes)
+    
+    return contas_vencidas, contas_prox_vencimento
+
+
+
+
+

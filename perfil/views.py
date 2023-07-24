@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from .models import mConta, mCategoria
 from django.contrib import messages
 from django.contrib.messages import constants
-from .utils import calcula_total, calcula_equilibrio_financerio, saldo_despesas
+from .utils import calcula_total, calcula_equilibrio_financerio, saldo_despesas, gerenciar_contas
 from extrato.models import mValores
 from datetime import datetime
+from contas.views import ver_contas
 
 # Create your views here.
 def home (request):
@@ -22,6 +23,11 @@ def home (request):
     
     total_contas = calcula_total(contas, 'valor')
 
+    contas_vencidas, contas_prox_vencimento = gerenciar_contas()
+
+    
+
+    
     return render(request, 'home.html', {'contas': contas, 
                                          'total_contas':total_contas, 
                                          'total_saidas':total_saidas, 
@@ -30,7 +36,9 @@ def home (request):
                                          'percentual_gastos_nao_essenciais': int(percentual_gastos_nao_essenciais),
                                          'total_entrada_mes' : total_entrada_mes,
                                          'total_saida_mes': total_saida_mes,
-                                         'total_livre': total_livre})
+                                         'total_livre': total_livre,
+                                         'contas_vencidas': contas_vencidas,
+                                         'contas_prox_vencimento': contas_prox_vencimento})
 
 
 

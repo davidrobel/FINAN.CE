@@ -147,10 +147,27 @@
                     <hr class="hr-borda">
 
                     <span class="fonte-destaque">Próximas do vencimento</span>
-                    <span class="fonte-light">3 contas próximas do vencimento</span>
+                    {% if not contas_prox_vencimento %}
+                        <p>UFA! Sem contas este mes</p>
+                    {% else %}
+                        {% for pv in contas_prox_vencimento %} 
+                        
+                            <span class="fonte-light"> {{pv.titulo}} dia: {{pv.dia_pagamento}}</span>
+
+                        {% endfor %}
+                    {% endif %}  
+
+
                     <br>
                     <span class="fonte-destaque negativo">Vencidas</span>
-                    <span class="fonte-light">0 contas vencidas</span>
+                    {% if not contas_vencidas %}
+                        <p>UFA! Sem contas vencida este mes</p>
+                    {% else %}
+                        {% for cv in contas_vencidas %}
+                            <span class="fonte-light">{{cv.titulo}} dia: {{cv.dia_pagamento}} </span> </br>                       
+
+                        {% endfor %}
+                    {% endif %}  
 
                     <hr class="hr-borda">
                     
